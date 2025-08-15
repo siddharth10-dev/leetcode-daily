@@ -1,0 +1,23 @@
+class Solution {
+    public int maxSubArray(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            // Handle edge case of an empty array, although problem constraints usually prevent this.
+            // Returning 0 or throwing an exception would be valid depending on the desired behavior.
+            return 0; 
+        }
+
+        int max_so_far = nums[0];
+        int current_max = nums[0];
+
+        for (int i = 1; i < nums.length; i++) {
+            // The current maximum ending at this position is either the current number itself,
+            // or the current number added to the previous current maximum.
+            current_max = Math.max(nums[i], current_max + nums[i]);
+            
+            // The global maximum is the larger of the current global maximum and the current maximum ending at this position.
+            max_so_far = Math.max(max_so_far, current_max);
+        }
+
+        return max_so_far;
+    }
+}
